@@ -1,0 +1,24 @@
+import os
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+# Define the base directory
+base_dir = 'C:/123'
+
+# Define the training directories for cats and dogs
+train_cat_dir = os.path.join(base_dir, 'cat')
+train_dog_dir = os.path.join(base_dir, 'dog')
+
+# Create data generators for cats and dogs
+train_cat_generator = ImageDataGenerator(rescale=1./255).flow_from_directory(
+    train_cat_dir,
+    target_size=(128, 128),
+    batch_size=32,
+    class_mode='binary'
+)
+
+train_dog_generator = ImageDataGenerator(rescale=1./255).flow_from_directory(
+    train_dog_dir,
+    target_size=(128, 128),
+    batch_size=32,
+    class_mode='binary'
+)
